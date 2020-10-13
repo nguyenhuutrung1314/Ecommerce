@@ -1,0 +1,219 @@
+<div id="footer" class="color-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="widget">
+                    <h4 class="widget-title">Instagram Feed</h4>
+                    <div id="beta-instagram-feed"><div></div></div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="widget">
+                    <h4 class="widget-title">Information</h4>
+                    <div>
+                        <ul>
+                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web Design</a></li>
+                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Web development</a></li>
+                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Marketing</a></li>
+                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Tips</a></li>
+                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Resources</a></li>
+                            <li><a href="blog_fullwidth_2col.html"><i class="fa fa-chevron-right"></i> Illustrations</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+             <div class="col-sm-10">
+                <div class="widget">
+                    <h4 class="widget-title">Contact Us</h4>
+                    <div>
+                        <div class="contact-info">
+                            <i class="fa fa-map-marker"></i>
+                            <p>30 South Park Avenue San Francisco, CA 94108 Phone: +78 123 456 78</p>
+                            <p>Nemo enim ipsam voluptatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="widget">
+                    <h4 class="widget-title">Newsletter Subscribe</h4>
+                    <form action="#" method="post">
+                        <input type="email" name="your_email">
+                        <button class="pull-right" type="submit">Subscribe <i class="fa fa-chevron-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- .row -->
+    </div> <!-- .container -->
+</div> <!-- #footer -->
+<div class="copyright">
+    <div class="container">
+        <p class="pull-left">Privacy policy. (&copy;) 2014</p>
+        <p class="pull-right pay-options">
+            <a href="#"><img src="/images/pay/master.jpg" alt="" /></a>
+            <a href="#"><img src="/images/pay/pay.jpg" alt="" /></a>
+            <a href="#"><img src="/images/pay/visa.jpg" alt="" /></a>
+            <a href="#"><img src="/images/pay/paypal.jpg" alt="" /></a>
+        </p>
+        <div class="clearfix"></div>
+    </div> <!-- .container -->
+</div> <!-- .copyright -->
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/javascripts/bootstrap-notify.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+    function hienthigiohang(){
+        $(document).ready(function() {
+        $.ajax({
+                url: '/hienthigiohang',
+                type: 'POST',
+                dataType: 'html',
+                data: {                
+                }
+            }).done(function(ketqua) {           
+                $(".cart").html(ketqua);
+                $(".cart .beta-select").on("click",function(){
+                 return $(".cart-body").slideToggle(),!1      
+            });                     
+        });
+    });
+}
+
+function themvaogiohang(manuochoa,tennuochoa,gianuochoa,hinhanh){
+    var dd='/?muanuochoa='+manuochoa+'&&tennuochoa='+tennuochoa+'&&gianuochoa='+gianuochoa+'&&hinhanhnuochoa='+hinhanh+'&&soluongmua='+"1";
+        $(document).ready(function() {
+            $.ajax({
+                url: dd,
+                type: 'GET',
+                dataType: 'html',
+                data: {                
+                }
+            }).done(function(ketqua) { 
+                          
+               hienthigiohang();   
+               
+               thongbaothemgiohang(); 
+         });
+    });
+}
+
+    function thongbaothemgiohang(){
+    $.notify({
+    // options
+    title: '<strong>Success</strong>',
+    message: "<br> Đã thêm vào giỏ hàng",
+    icon: 'glyphicon glyphicon-ok',
+    target: '_blank'
+        },{
+    // settings
+    element: 'body',
+    //position: null,
+    type: "success",
+    //allow_dismiss: true,
+    //newest_on_top: false,
+    showProgressbar: false,
+    placement: {
+        from: "top",
+        align: "center"
+    },
+    offset: 65,
+    spacing: 10,
+    z_index: 1031,
+    delay: 700,
+    timer: 1000,
+    url_target: '_blank',
+    mouse_over: null,
+    animate: {
+        enter: 'animated fadeInDown',
+        exit: 'animated fadeOutRight'
+    },
+    onShow: null,
+    onShown: null,
+    onClose: null,
+    onClosed: null,
+    icon_type: 'class',
+});
+}
+
+
+
+hienthigiohang();
+
+    function xoanuochoa(manuochoaxoa)
+    {
+            $(document).ready(function() {
+            $.ajax({
+                url: '/?typess=xoa&manuochoax='+manuochoaxoa,
+                type: 'GET',
+                dataType: 'html',
+                data: {                
+                }
+            }).done(function(ketqua) { 
+                          
+               hienthigiohang();   
+                           
+         });
+         });
+
+    }
+
+    function themnuochoa(manuochoathem)
+    {
+        $(document).ready(function() {
+            $.ajax({
+                url: '/?typess=them&manuochoax='+manuochoathem,
+                type: 'GET',
+                dataType: 'html',
+                data: {                
+                }
+            }).done(function(ketqua) {                       
+               hienthigiohang();                
+         });
+         });
+
+
+    }
+
+    function botnuochoa(manuochoabot)
+    {
+       
+        $(document).ready(function() {
+            $.ajax({
+                url: '/?typess=bot&manuochoax='+manuochoabot,
+                type: 'GET',
+                dataType: 'html',
+                data: {                
+                }
+            }).done(function(ketqua) {           
+               hienthigiohang();     
+                   
+         });
+         });
+
+
+    }
+
+
+
+
+   
+    function dathang(){ 
+        console.log('lone');
+      
+        if(user.full_name !='undefined')
+                alert("Đặt hàng thành công!");
+        else {
+            alert("Đặt hàng thất bại :( , bạn chưa đăng nhập!"+ user.full_name);
+            console.log(user.full_name);}
+        window.open(dd,"_self");
+        
+
+    }
+
+
+</script>
+

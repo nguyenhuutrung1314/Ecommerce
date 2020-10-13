@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<title>Quản Trị Viên</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+	<link rel="stylesheet" href="/vendors/colorbox/example3/colorbox.css">
+	<link rel="stylesheet" href="/rs-plugin/css/settings.css">
+	<link rel="stylesheet" href="/rs-plugin/css/responsive.css">
+	<link rel="stylesheet" title="style" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/animate.css">
+	<link rel="stylesheet" title="style" href="/stylesheets/huong-style.css">
+</head>
+<body>
+	<div class="pull-right auto-width-right">
+		<ul class="top-details menu-beta l-inline" style="margin-top: 10px">
+			<li><i class="fa fa-user"></i><%- user.full_name %></li>
+			<li><a href ="/logout" style="line-height:24px; height:24px;">Thoát</a></li>
+		</ul>
+	</div>
+	<head id="header">
+		<div class="header-body">
+			<div class="container beta-relative">
+				<div class="pull-left">
+					<a href="/" id="logo"><img src="/images/logo-shop.png" width="200px" alt=""></a>
+				</div>
+				<div class="clearfix"></div>
+			</div> <!-- .container -->
+		</div>
+	</head> <!-- .header-body -->
+	<div class="header-bottom" style="background-color: #0277b8;">
+    <div class="container">
+        <nav class="main-menu">
+			<a class="active homeadmin" href="/admin"> <i class = "fa fa-home"></i> </a>
+            <span>Chuyên Mục Dành Cho Quản Trị Viên</span>
+            <div class="clearfix"></div>
+        </nav>
+    </div> <!-- .container -->
+	</div> <!-- .header-bottom -->
+	<%- include(body)%>
+</body>
+</html>

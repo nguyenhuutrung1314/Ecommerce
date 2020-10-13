@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shop nước hoa </title>
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+	<link rel="stylesheet" href="/vendors/colorbox/example3/colorbox.css">
+	<link rel="stylesheet" href="/rs-plugin/css/settings.css">
+	<link rel="stylesheet" href="/rs-plugin/css/responsive.css">
+	<link rel="stylesheet" title="style" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/animate.css">
+	<link rel="stylesheet" title="style" href="/stylesheets/huong-style.css">
+</head>
+<body>
+
+	<div id="header">
+		<%- include partials/header %>
+		<%- include partials/giohang%>
+	</div> <!-- #header -->
+		<%- include partials/nav %>
+	
+	<div class="inner-header">
+		<div class="container">
+			<div class="pull-left">
+				<h6 class="inner-title">Sản phẩm</h6>
+			</div>
+			<div class="pull-right">
+				<div class="beta-breadcrumb font-large">
+					<a href="/">Home</a> / <span>Sản phẩm</span>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="container">
+		<div id="content" class="space-top-none">
+			<div class="main-content">
+				<div class="space60">&nbsp;</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<ul class="aside-menu">
+							<li><a href="#">Sắp Xếp tăng dần</a></li>
+							<li><a href="#">Sắp Xếp giảm dần</a></li>
+							<li><a href="#">mua nhiều nhất</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-9">
+						<div class="beta-products-list">
+							<%if (count != 0 ) { %>
+								<h3>Kết quả tìm kiếm cho sản phẩm:<i><b><%-tensp%></b></i></h3>
+								<div class="beta-products-details">
+									<p class="pull-left"><%=count%> Sản phẩm</p>
+									<div class="clearfix"></div>
+								</div>
+								
+									<%-kqtk%>
+							
+							<% }else { %>
+								<h3><i><b>Không có kết quả nào. Bạn nên nhập thêm ký tự</b></i></h3>
+								
+								<%}%>
+						</div> <!-- .beta-products-list -->
+
+						<!-- <div class="space50">&nbsp;</div> -->
+
+						
+							
+						</div> <!-- .beta-products-list -->
+					</div>
+				</div> <!-- end section with sidebar and main content -->
+
+
+			</div> <!-- .main-content -->
+		</div> <!-- #content -->
+	</div> <!-- .container -->
+
+	<%- include partials/footer %>
+
+
+<!-- include js files -->
+<script src="/javascripts/jquery.js"></script>
+<script src="/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="/vendors/bxslider/jquery.bxslider.min.js"></script>
+<script src="/vendors/colorbox/jquery.colorbox-min.js"></script>
+<script src="/vendors/animo/Animo.js"></script>
+<script src="/vendors/dug/dug.js"></script>
+<script src="/javascripts/scripts.min.js"></script>
+<script src="/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="/javascripts/waypoints.min.js"></script>
+<script src="/javascripts/wow.min.js"></script>
+<!--customjs-->
+<script src="/javascripts/custom2.js"></script>
+	<script>
+	$(document).ready(function($) {    
+		$(window).scroll(function(){
+			if($(this).scrollTop()>150){
+			$(".header-bottom").addClass('fixNav')
+			}else{
+				$(".header-bottom").removeClass('fixNav')
+			}}
+		)
+	})
+	</script>
+</body>
+</html>

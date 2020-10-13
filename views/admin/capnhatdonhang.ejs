@@ -1,0 +1,69 @@
+<div class="space30">&nbsp;</div>
+<div class="container-fluid">
+	<h3 align="center">Thông Tin Đơn Hàng<a href="/admin/quanlydonhang" style="float:left; font-size: 14px; border: 1px solid #e1e1e1; padding-right: 5px"><i class="fa fa-angle-left" style="font-size: 25px; color: #00cc6a"></i>Quay lại</a></h3>
+	<div class="space30">&nbsp;</div>
+	<form method="POST" action="adminUpdateBill" style="font-size: 14px">
+		<table style="margin-left:auto; margin-right:auto;">
+			<tr>
+				<td class="tabledonhang" style="width:250px">Tên khách hàng: </td>
+				<td class="tabledonhang"><%= updatebill.name%></td>
+				<input type="hidden" id="idbill" name="idbill" value="<%= updatebill.id%>"/>
+			</tr>
+			<tr>
+				<td class="tabledonhang">Ngày đặt hàng: </td>
+				<td class="tabledonhang"><%= updatebill.date_order%></td>	
+			</tr>
+			<tr>
+				<td class="tabledonhang">Danh sách sản phẩm: </td>
+				<td class="tabledonhang">
+					<table class ="table_cthd">
+						<tr>
+							<th>Tên sản phẩm</th>
+							<th style="min-width: 75px;">Đơn giá</th>
+							<th style="min-width: 75px;">Số lượng</th>
+							<th style="min-width: 75px;">Thành tiền</th>
+						</tr>
+						<%- dssp%>
+					</table>
+				</td>	
+			</tr>
+			<tr>
+				<td class="tabledonhang">Tổng tiền: </td>
+				<td class="tabledonhang"><%= tongtien%></td>	
+			</tr>
+			<tr >
+				<td class="tabledonhang">Hình thức thanh toán: </td>
+				<td class="tabledonhang"><%= updatebill.payment%></td>	
+			</tr>
+			<tr >
+				<td class="tabledonhang">Ghi chú: </td>
+				<td class="tabledonhang"><%= updatebill.note%></td>	
+			</tr>
+			<tr>
+				<td class="tabledonhang">Trạng thái: </td>
+				<td class="tabledonhang">
+					<select id = "optiontrangthaidonhang" onchange="thaydoitt(this)" style="width: 300px">
+						<% trangthai.forEach(function(trangthai){ %>
+							<% if (trangthai.name == updatebill.trangthai) { %>
+								<option value="<%= trangthai.name %>" selected><%= trangthai.name %></option>
+							<% } else { %>
+								<option value="<%= trangthai.name %>"><%= trangthai.name %></option>
+							<% } %>
+						<% }) %>
+					</select>
+					<input type="hidden" id="trangthai" name="trangthai" value="">
+				</td>
+				<script>
+					document.getElementById('trangthai').value = document.getElementById('optiontrangthaidonhang').value;;
+					function thaydoitt(obj)
+					{
+						document.getElementById('trangthai').value = obj.value;
+					}
+				</script>		
+			</tr>
+		</table>
+		<br>
+		<center><button type="submit" class="button btn-primary" style="width:30%"><i class="fa fa-edit"></i> Cập nhật đơn hàng</button></center>
+	</form>
+	<div class="space60">&nbsp;</div>
+</div>

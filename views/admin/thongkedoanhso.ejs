@@ -1,0 +1,58 @@
+<div class="topnav">
+  <a class="active" style="width:80px;" href=""> <i class = "fa fa-home" ></i> </a>
+  <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="Search.." name="search">
+    </form>
+  </div>
+</div>
+
+<br>
+<a href="/thongkebanhang" style="float:left">  <button type = "button" class = "button btn-primary"><i class="fa fa-arrow-left"></i>  </button> </a>
+<br>
+<center><h2 >Thống kê doanh số bán hàng</h2></center>
+
+<% if (tongdoanhthu.tongsp !=0) { %>
+  <center>
+    <div class="space=60"> </div>
+      <div id="chart_div" style="width:400; height:300;"></div>
+    <div class="space"> </div>
+  </center>
+  <% } else { %>
+    <center>
+    <div class = "space"> </div>
+      <h3> Rất tiếc, không có sản nào được bán trong khoảng thời gian trên </h3>
+    <div class = "space"> </div>
+    </center>
+  <% }  %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load the Visualization API and the piechart package.
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+  
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ['Nước hoa Nhập khẩu',<%= tongdoanhthu.tongket["nuochoanhapkhau"]%>] ,
+        ['Nước hoa Nội', <%= tongdoanhthu.tongket["nuochoanoi"]%>],
+        ['Nước hoa Công sở', <%= tongdoanhthu.tongket["nuochoacongso"]%>],
+        ['Nước hoa Du lịch', <%= tongdoanhthu.tongket["nuochoadulich"]%>],
+       
+      ]);
+  
+      // Set chart options
+      var options = {
+        'title': 'Thống kê theo sản phẩm đã bán\nTổng sản phẩm: <%= tongdoanhthu.tongsp%> ',
+        'is3D': true,
+        'width': 400,
+        'height': 300
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>

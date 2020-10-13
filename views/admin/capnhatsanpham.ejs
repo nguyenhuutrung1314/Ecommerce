@@ -1,0 +1,148 @@
+<div class="space30">&nbsp;</div>
+<div class="container-fluid">
+	<h3 align="center">Sửa thông tin sản phẩm<a href="/admin/quanlygianhang" style="float:left; font-size: 14px; border: 1px solid #e1e1e1; padding-right: 5px"><i class="fa fa-angle-left" style="font-size: 25px; color: #00cc6a"></i>Quay lại</a></h3>
+	<div class="space20">&nbsp;</div>
+	<form id="textform" method="POST" action="adminUpdateProduct">
+		<center>
+			<div style="width: 70%">
+				<div class = "truongthongtinsanpham">
+					<span class="tenthuoctinhsanpham">Tên sản phẩm</span>
+					<input type="text" id="name" name="name" value="<%= updateproduct.name%>" style="width:60%; float:right" required pattern="[A-Za-z0-9_() áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{5,100}" title="Không chứa ký tự đặt biệt ngoại trừ Space, _ và (), nhiều hơn 5 ký tự, tối đa 100 ký tự" />
+					<input type="hidden" id="idsp" name="idsp" value="<%= updateproduct.id%>"/>
+				</div>
+				<div class = "truongthongtinsanpham">
+					<span class="tenthuoctinhsanpham">Thương hiệu</span>
+					<select id = "optionthuonghieu" onchange="thaydoithuonghieu(this)" style="width:60%; height:37px; float:right">
+						<% dsthuonghieu.forEach(function(dsthuonghieu){ %>
+							<% if (dsthuonghieu.id == updateproduct.id_thuonghieu) { %>
+								<option value="<%= dsthuonghieu.id %>" selected><%= dsthuonghieu.name %></option>
+							<% } else { %>
+								<option value="<%= dsthuonghieu.id %>"><%= dsthuonghieu.name %></option>
+							<% } %>
+						<% }) %>
+					</select>
+					<input type="hidden" id="thuonghieu" name="thuonghieu" value="">
+					<script>
+						document.getElementById('thuonghieu').value = document.getElementById('optionthuonghieu').value;;
+						function thaydoiloai(obj)
+						{
+							document.getElementById('thuonghieu').value = obj.value;
+						}
+					</script>		
+				</div>
+				<div class = "truongthongtinsanpham">
+					<span class="tenthuoctinhsanpham">Loại</span>
+					<select id = "optionloai" onchange="thaydoiloai(this)" style="width:60%; height:37px; float:right">
+						<% dsloaisp.forEach(function(dsloai){ %>
+							<% if (dsloai.id == updateproduct.id_loai) { %>
+								<option value="<%= dsloai.id %>" selected><%= dsloai.name %></option>
+							<% } else { %>
+								<option value="<%= dsloai.id %>"><%= dsloai.name %></option>
+							<% } %>
+						<% }) %>
+					</select>
+					<input type="hidden" id="loai" name="loai" value="">
+					<script>
+						document.getElementById('loai').value = document.getElementById('optionloai').value;;
+						function thaydoiloai(obj)
+						{
+							document.getElementById('loai').value = obj.value;
+						}
+					</script>		
+				</div>
+				<div class = "truongthongtinsanpham">
+					<span class="tenthuoctinhsanpham">Giới tính</span>
+					<select id="optiongioitinh" onchange="thaydoigt(this)" style="width:60%; height:37px; float:right">
+						<% if (updateproduct.gioitinh == "Nam") { %>
+							<option value="Nam" selected>Nam</option>
+							<option value="Nữ">Nữ</option>
+						<% } else { %>
+							<option value="Nam">Nam</option>
+							<option value="Nữ" selected>Nữ</option>
+						<% } %>
+					</select>
+					<input type="hidden" id="gioitinh" name="gioitinh" value="">
+					<script>
+						document.getElementById('gioitinh').value = document.getElementById('optiongioitinh').value;;
+						function thaydoigt(obj)
+						{
+							document.getElementById('gioitinh').value = obj.value;
+						}
+					</script>
+				</div>
+				<div class = "truongthongtinsanpham">
+					<span class="tenthuoctinhsanpham">Giá gốc</span>
+					<input type="text" id="unit_price" name="unit_price" value="<%= updateproduct.unit_price %>" style="width:60%; float:right" required pattern="[0-9]{4,}" title="Chỉ chứa số, không ít hơn 4 số" />
+				</div>
+				<div class = "truongthongtinsanpham">
+					<span class="tenthuoctinhsanpham">Giá khuyến mãi</span>
+					<input type="text" id="promotion_price" name="promotion_price" value="<%= updateproduct.promotion_price%>" style="width:60%; float:right" required pattern="[0-9]{4,}" title="Chỉ chứa số, không ít hơn 4 số" />
+				</div>
+				<div class = "truongmotasanpham">
+					<span class="tenthuoctinhsanpham">Mô tả</span>
+					<textarea rows="3" cols="100" style="width:60%; float:right" id="description" name="description"><%= updateproduct.description %></textarea>
+				</div>
+				<input type="hidden" id="ngaycapnhat" name="ngaycapnhat" value="<%-ngaycapnhat%>">
+			</div>
+		</center>
+	</form>
+	<form id="fileform" method="post" action="fileupload" enctype="multipart/form-data">
+		<center>
+			<div style="width: 70%">
+				<div class="space20">&nbsp;</div>
+				<div style="height: 40px; margin: 5px">
+					<span style="float: left; width: 40%; text-align: left; margin: 7px 0px;">Hình sản phẩm</span>
+					<label for = "inputfile" class="custom-file-upload" style="float: left;"><i class="fa fa-cloud-upload" style="color:orange"></i> Chọn ảnh</label>
+					<input id = "inputfile" type="file" name="filetoupload" >
+					<label id = "filename" style="margin: 7px 5px; float: left"><%= updateproduct.image %></label>
+				</div>
+			</div>
+		</center>
+		<img id="img" src="/images/products/<%= updateproduct.image %>" style="width:12%; height:12%; margin-left: 43%" alt="IMAGE">
+	</form>
+	<center>
+		<br>
+		<button onclick="submit()" class="button btn-primary" style="width:30%"><i class="fa fa-edit"></i> Cập nhật sản phẩm</button>
+	</center>
+	<script>
+		document.querySelector("#inputfile").onchange = function() {
+			document.getElementById("filename").innerHTML = this.files[0].name;
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(this.files[0]);
+			}
+		}
+		
+		function submit(){
+			var tb = 0;
+			if(!document.getElementById("inputfile").value)
+				tb = 4;
+			if (!document.getElementById("promotion_price").checkValidity())
+				tb = 3;
+			if (!document.getElementById("unit_price").checkValidity())
+				tb = 2;
+			if (!document.getElementById("name").checkValidity())
+				tb = 1;
+			if (tb == 1)
+				alert("Tên sản phẩm: "+document.getElementById("name").validationMessage+"\n\n(Không chứa ký tự đặt biệt ngoại trừ Space, _ và (), nhiều hơn 5 ký tự, tối đa 100 ký tự)");
+			if(tb == 2)
+				alert("Giá gốc: "+document.getElementById("unit_price").validationMessage+"\n\n(Chỉ chứa số, không ít hơn 4 số)");
+			if(tb == 3)
+				alert("Giá khuyến mãi: "+document.getElementById("promotion_price").validationMessage+"\n\n(Chỉ chứa số, không ít hơn 4 số)");
+			if(tb == 4)
+				alert("Chưa chọn hình ảnh");
+			if(tb == 0){
+				document.getElementById("fileform").submit();
+				alert("Đã cập nhật sản phẩm");
+				document.getElementById("textform").submit();
+			}
+		}
+	</script>
+	<div class="space60">&nbsp;</div>
+</div>
+<script src="../../boostrap-admin/vendor/jquery/jquery.min.js"></script>
